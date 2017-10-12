@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.butrym.wojciech.appaccelremote.MainActivity"
+    app:layout_collapseParallaxMultiplier="1.0">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@android:color/holo_red_dark" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="97dp">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="?android:attr/colorForeground">
+
+            <ToggleButton
+                android:id="@+id/onoff"
+                style="@android:style/Widget.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/conmaintext"
+                android:checked="false"
+                android:cursorVisible="false"
+                android:enabled="false"
+                android:selectAllOnFocus="false"
+                android:text=""
+                android:textColor="@color/toggle_color"
+                android:textOff="@string/togoff"
+                android:textOn="@string/togon" />
+
+            <TextView
+                android:id="@+id/napisx"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="11dp"
+                android:text="X = "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/napisy"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/onoff"
+                android:layout_alignBottom="@+id/onoff"
+                android:layout_alignStart="@+id/napisx"
+                android:text="Y = "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/xval"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/napisx"
+                android:text="- - -"
+                android:textAlignment="center"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/yval"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/napisy"
+                android:layout_alignBottom="@+id/napisy"
+                android:layout_toEndOf="@+id/napisy"
+                android:text="- - -"
+                android:textAlignment="center"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/conmaintext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/conardtext"
+                android:layout_alignStart="@+id/napisy"
+                android:text="Połączenie z main: "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/conardtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/conmaintext"
+                android:text="Połączenie z arduino: "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/polmainval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/polardval"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/conardtext"
+                android:text="nie połączono"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/polardval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/conardtext"
+                android:layout_alignStart="@+id/polmainval"
+                android:text="nie połączono"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="342dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeLayout">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="342dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </android.support.v4.view.ViewPager>
+
+            <ListView
+                android:id="@+id/lista"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:alpha="1"
+                android:background="@android:color/darker_gray"
+                android:forceHasOverlappingRendering="true">
+
+
+            </ListView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

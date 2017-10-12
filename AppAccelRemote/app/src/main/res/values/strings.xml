@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AppAccelRemote</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="page3">Kalibracja</string>
+    <string name="wyjscie">Wyjście</string>
+    <string name="po_cz">Połącz</string>
+    <string name="xvalp">---</string>
+    <string name="yvalp">---</string>
+    <string name="x">X =</string>
+    <string name="y">Y =</string>
+    <string name="sparowane">Lista sparowanych urządzeń:</string>
+    <string name="cancel">Cofnij</string>
+    <string name="zapisz">Kalibruj</string>
+    <string name="wyczysc">Wyczyść Kalibrację</string>
+    <string name="togoff">Sensor wyłączony Włącz</string>
+    <string name="togon">Sensor włączony Wyłącz</string>
+
+</resources>

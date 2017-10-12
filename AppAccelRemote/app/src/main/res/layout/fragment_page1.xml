@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorControlHighlight"
+    tools:context="com.butrym.wojciech.appaccelremote.Page1">
+
+    <Button
+        android:id="@+id/polzmain"
+        style="@android:style/Widget.Button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/rozmain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:elevation="0dp"
+        android:text="Połącz z Main"
+        android:textColor="@android:color/background_dark" />
+
+    <Button
+        android:id="@+id/rozmain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/polzard"
+        android:layout_alignStart="@+id/polzmain"
+        android:layout_marginBottom="100dp"
+        android:text="rozłącz main"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/polzard"
+        style="@android:style/Widget.Button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/polzmain"
+        android:layout_marginTop="194dp"
+        android:text="Połącz z Arduino"
+        android:textColor="@android:color/background_dark" />
+
+    <Button
+        android:id="@+id/rozard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="rozłącz arrduino"
+        android:textSize="12sp"
+        android:layout_below="@+id/polzard"
+        android:layout_alignStart="@+id/polzard" />
+
+
+</RelativeLayout>

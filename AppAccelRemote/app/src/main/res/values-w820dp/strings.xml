@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="page3">Kalibracja</string>
+    <string name="wyjscie">Wyjście</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="togoff">Sensor wyłączony Włącz</string>
+    <string name="togon">Sensor włączony Wyłącz</string>
+</resources>
