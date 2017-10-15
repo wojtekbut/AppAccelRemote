@@ -192,39 +192,7 @@ public class ConnectThread extends Thread {
         }
     }
 
-    public void writeb(String rozkaz, byte[] bity){
-        String poczatek, koniec;
-        byte[] bpoczatek, bkoniec, brozkaz, wiadomosc;
-        poczatek = "stArt:";
-        koniec = ":koNiec";
-        bpoczatek = poczatek.getBytes();
-        bkoniec = koniec.getBytes();
-        brozkaz = rozkaz.getBytes();
-        byte[] objetosc = new byte[2];
-        byte dlrozkazu = (byte) brozkaz.length;
-        int dlugosc = bity.length;
-        if (dlugosc < 256) {
-            objetosc[0] = 0;
-            objetosc[1] = (byte) dlugosc;
-        } else if (dlugosc > 255 && dlugosc < 65535) {
-            objetosc[0] = (byte) (dlugosc / 256);
-            objetosc[1] = (byte) (dlugosc - ((int) objetosc[0] * 256));
-        } else {
-        }
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        try {
-            outputStream.write(bpoczatek);
-            outputStream.write(dlrozkazu);
-            outputStream.write(objetosc);
-            outputStream.write(brozkaz);
-            outputStream.write(bity);
-            outputStream.write(bkoniec);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        wiadomosc = outputStream.toByteArray();
-        write(wiadomosc);
-    }
+    
 
     public void writes(String rozkaz, String string) {
         String poczatek, koniec;
