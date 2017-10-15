@@ -24,7 +24,6 @@ class ConnectThread extends Thread {
     private final Handler mHandler;
     private InputStream mmInStream;
     private OutputStream mmOutStream;
-    private final String TAG = "connectThread";
 
     ConnectThread(BluetoothDevice device, Handler handler) {
 
@@ -34,6 +33,7 @@ class ConnectThread extends Thread {
         try {
             tmp = device.createRfcommSocketToServiceRecord(UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66"));
         } catch (IOException e) {
+            e.printStackTrace();
         }
         mmSocket = tmp;
     }
@@ -49,6 +49,8 @@ class ConnectThread extends Thread {
             try {
                 mmSocket.close();
             } catch (IOException closeException) {
+                closeException.printStackTrace();
+
             }
             return;
         }
@@ -115,14 +117,12 @@ class ConnectThread extends Thread {
                             Arrays.fill(poczatek, (byte) 0);
                             Arrays.fill(koniec, (byte) 0);
                             Arrays.fill(objetosc, (byte) 0);
-                            continue;
                         }
                     }else {
                         Arrays.fill(buffer, (byte) 0);
                         Arrays.fill(poczatek, (byte) 0);
                         Arrays.fill(koniec, (byte) 0);
                         Arrays.fill(objetosc, (byte) 0);
-                        continue;
                     }
                 }
             } catch (IOException e) {
@@ -140,7 +140,7 @@ class ConnectThread extends Thread {
         } else if (rozkaz.startsWith("y:")) {
             mHandler.obtainMessage(2, new String(wiadomosc)).sendToTarget();
         } else if (rozkaz.startsWith("lista:")) {
-            ArrayList<String> listaArray = new ArrayList<String>();
+            ArrayList<String> listaArray = new ArrayList<>();
             ByteArrayInputStream bais = new ByteArrayInputStream(wiadomosc);
             ObjectInputStream objectIn = null;
             try {
@@ -163,14 +163,15 @@ class ConnectThread extends Thread {
         }
     }
 
-    public void cancel() {
+    void cancel() {
         try {
             mmSocket.close();
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void write(byte[] buffer) {
+    private void write(byte[] buffer) {
         try {
             if (mmSocket.getOutputStream() == null) {
                 return;
@@ -185,6 +186,7 @@ class ConnectThread extends Thread {
                 mmOutStream.write(buffer);
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

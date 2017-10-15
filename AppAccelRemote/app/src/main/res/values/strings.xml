@@ -18,5 +18,11 @@
     <string name="wyczysc">Wyczyść Kalibrację</string>
     <string name="togoff">Sensor wyłączony Włącz</string>
     <string name="togon">Sensor włączony Wyłącz</string>
+    <string name="nopairdev">Brak sparowanych urządzeń.</string>
+    <string name="noadrespicked">Nie wybrano adresu.</string>
+    <string name="conned">Połączono z: %1$s</string>
+    <string name="disconn">Rozłączony.</string>
+    <string name="conning">łączę z</string>
+    <string name="failedw">Nieudane poł. z</string>
 
 </resources>

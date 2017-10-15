@@ -181,9 +181,10 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
             }
-            if (coto.getType().isAssignableFrom(ConnectThread.class)) {
+
+            if ((coto != null) && coto.getType().isAssignableFrom(ConnectThread.class)) {
                 return coto.get(this) != null;
-            } else if (coto.getType().isAssignableFrom(boolean.class)) {
+            } else if ((coto != null) && coto.getType().isAssignableFrom(boolean.class)) {
                 return (boolean) coto.get(this);
             }
         } catch (IllegalAccessException e) {
@@ -203,13 +204,13 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
             polaczenie.start();
             polmainval.setText(String.format("Łączę z %1$s", nazwa.substring(0, nazwa.indexOf("\n"))));
         } else {
-            polmainval.setText("Nie wybrano adresu.");
+            polmainval.setText(R.string.noadrespicked);
         }
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
         }
     }
 
-    Handler mHandler = new Handler() {
+     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
 
@@ -304,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                 case 4:
                     onoff.setEnabled(true);
                     onoff.setChecked(false);
-                    polmainval.setText("Połączony z " + nazwa.substring(0, nazwa.indexOf("\n")));
+                    polmainval.setText(String.format(getString(R.string.conned), nazwa.substring(0, nazwa.indexOf("\n"))));
                     if (pg1 != null) {
                         pg1.polzmain.setEnabled(false);
                         pg1.rozmain.setEnabled(true);
@@ -320,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                     break;
                 case 5:
                     listaArray = (ArrayList) msg.obj;
-                    arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.lista, listaArray);
+                    arrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.lista, listaArray);
                     listaview.setAdapter(arrayAdapter);
                     listaview.setVisibility(View.VISIBLE);
                     listaview.bringToFront();
@@ -334,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                             listaview.setVisibility(View.INVISIBLE);
                             findViewById(R.id.container).setVisibility(View.VISIBLE);
                             wyslijDoMain("polArd", address);
-                            polardval.setText("łączę z " + name);
+                            polardval.setText(String.format("%s%s", getString(R.string.conning), name));
                         }
                     });
                     break;
@@ -343,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                     break;
                 case 7:
                     if (text.equals("rozlaczony")) {
-                        polardval.setText("Rozłączony.");
+                        polardval.setText(R.string.disconn);
                         if (pg1 != null) {
                             pg1.polzard.setEnabled(true);
                             pg1.rozard.setEnabled(false);
@@ -365,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                             pg2.allButtons((ViewGroup) pg2.getView(),"enable" );
                         }
                     } else if (text.startsWith("failed")) {
-                        polardval.setText("Nieudane poł. z " + text.substring(text.indexOf(" ")));
+                        polardval.setText(String.format("%s%s", getString(R.string.failedw), text.substring(text.indexOf(" "))));
                     }
                     break;
                 case 8:

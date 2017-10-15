@@ -15,25 +15,22 @@ import java.util.Set;
 public class ListaUrzadzen extends Activity {
 
 
-    private BluetoothAdapter mBtAdapter;
-    private ArrayAdapter<String> sparowaneUrzadzeniaArray;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_urzadzen);
-        sparowaneUrzadzeniaArray = new ArrayAdapter<String>(this, R.layout.lista);
+        ArrayAdapter<String> sparowaneUrzadzeniaArray = new ArrayAdapter<>(this, R.layout.lista);
         ListView pairedListView = (ListView) findViewById(R.id.ListView);
         pairedListView.setAdapter(sparowaneUrzadzeniaArray);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
-        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+        BluetoothAdapter mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
                 sparowaneUrzadzeniaArray.add(device.getName() + "\n" + device.getAddress());
             }
         } else {
-            String noDevices = "Brak sparowanych urządzeń.".toString();
+            String noDevices = getString(R.string.nopairdev);
             sparowaneUrzadzeniaArray.add(noDevices);
         }
     }
