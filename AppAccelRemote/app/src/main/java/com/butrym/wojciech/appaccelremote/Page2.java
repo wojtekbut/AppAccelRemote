@@ -26,11 +26,11 @@ public class Page2 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_page2, container, false);
-        recursiveLoopChildren((ViewGroup) v, "onclick");
+        allButtons((ViewGroup) v, "onclick");
         if (!mCallBack.isValue("polardena") && mCallBack.isValue("polmainena")) {
-            recursiveLoopChildren((ViewGroup) v, "disable");
+            allButtons((ViewGroup) v, "disable");
         } else {
-            recursiveLoopChildren((ViewGroup) v, "enable");
+            allButtons((ViewGroup) v, "enable");
         }
         b1 = (Button) v.findViewById(R.id.b1);
         b2 = (Button) v.findViewById(R.id.b2);
@@ -139,11 +139,11 @@ public class Page2 extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void recursiveLoopChildren(ViewGroup parent, String corobic) {
+    public void allButtons(ViewGroup parent, String corobic) {
         for (int i = parent.getChildCount() - 1; i >= 0; i--) {
             final View child = parent.getChildAt(i);
             if (child instanceof ViewGroup) {
-                recursiveLoopChildren((ViewGroup) child, corobic);
+                allButtons((ViewGroup) child, corobic);
             } else {
                 if (child != null) {
                     if (child instanceof Button) {

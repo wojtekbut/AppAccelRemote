@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
         } else if (msg.length == 2) {
             String rozkaz = msg[0];
             String wiadomosc = msg[1];
-            if (rozkaz.endsWith(":") || rozkaz.equals("lista")) {
+            if (rozkaz.endsWith(":")) {
                 wyslijDoMain(rozkaz, wiadomosc);
             }
         }
@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                     kalibena = false;
                     reskalibena = false;
                     if (pg2 != null) {
-                        pg2.recursiveLoopChildren((ViewGroup) pg2.getView(),"disable" );
+                        pg2.allButtons((ViewGroup) pg2.getView(),"disable" );
                     }
                     break;
                 case 4:
@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                         polardena = true;
                         rozardena = false;
                         if (pg2 != null) {
-                            pg2.recursiveLoopChildren((ViewGroup) pg2.getView(),"disable" );
+                            pg2.allButtons((ViewGroup) pg2.getView(),"disable" );
                         }
                     } else if (text.startsWith("Polaczony")) {
                         polardval.setText(text.replace("Polaczony", "Połączony"));
@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements Page1.communicate
                         polardena = false;
                         rozardena = true;
                         if (pg2 != null) {
-                            pg2.recursiveLoopChildren((ViewGroup) pg2.getView(),"enable" );
+                            pg2.allButtons((ViewGroup) pg2.getView(),"enable" );
                         }
                     } else if (text.startsWith("failed")) {
                         polardval.setText("Nieudane poł. z " + text.substring(text.indexOf(" ")));

@@ -19,22 +19,20 @@ import java.util.UUID;
  * Created by wojtek on 04.10.17.
  */
 
-public class ConnectThread extends Thread {
+class ConnectThread extends Thread {
     private final BluetoothSocket mmSocket;
-    private final BluetoothDevice mmDevice;
     private final Handler mHandler;
-    InputStream mmInStream;
-    OutputStream mmOutStream;
+    private InputStream mmInStream;
+    private OutputStream mmOutStream;
     private final String TAG = "connectThread";
 
-    public ConnectThread(BluetoothDevice device, Handler handler) {
+    ConnectThread(BluetoothDevice device, Handler handler) {
 
-        mmDevice = device;
         mHandler = handler;
         BluetoothSocket tmp = null;
 
         try {
-            tmp = mmDevice.createRfcommSocketToServiceRecord(UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66"));
+            tmp = device.createRfcommSocketToServiceRecord(UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66"));
         } catch (IOException e) {
         }
         mmSocket = tmp;
@@ -72,7 +70,7 @@ public class ConnectThread extends Thread {
     }
 
 
-    public void czytaj() {
+    private void czytaj() {
         byte[] buffer = new byte[2];
         byte[] poczatek = new byte[6];
         byte dlrozkazu;
@@ -135,7 +133,7 @@ public class ConnectThread extends Thread {
 
     }
 
-    public void wiadomosc(String rozkaz, byte[] wiadomosc ) {
+    private void wiadomosc(String rozkaz, byte[] wiadomosc) {
         Log.d("wiadomość", rozkaz + " " + new String(wiadomosc));
         if (rozkaz.startsWith("x:")) {
             mHandler.obtainMessage(1, new String(wiadomosc)).sendToTarget();
@@ -152,9 +150,7 @@ public class ConnectThread extends Thread {
             }
             try {
                 listaArray = (ArrayList<String>) objectIn.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
             mHandler.obtainMessage(5,listaArray ).sendToTarget();
@@ -194,7 +190,7 @@ public class ConnectThread extends Thread {
 
     
 
-    public void writes(String rozkaz, String string) {
+    void writes(String rozkaz, String string) {
         String poczatek, koniec;
         byte[] bpoczatek, bkoniec, brozkaz, bstring, wiadomosc;
         poczatek = "stArt:";
@@ -212,7 +208,6 @@ public class ConnectThread extends Thread {
         } else if (dlugosc > 255 && dlugosc < 65535) {
             objetosc[0] = (byte) (dlugosc / 256);
             objetosc[1] = (byte) (dlugosc - ((int) objetosc[0] * 256));
-        } else {
         }
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
